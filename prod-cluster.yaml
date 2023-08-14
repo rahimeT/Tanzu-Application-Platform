@@ -1,0 +1,42 @@
+apiVersion: run.tanzu.vmware.com/v1alpha2
+kind: TanzuKubernetesCluster
+metadata:
+  name: tkgs-test
+  namespace: tkg-ns
+spec:
+  topology:
+    controlPlane:
+      replicas: 1
+      vmClass: best-effort-large
+      storageClass: vc01cl01-t0compute
+      volumes:
+        - name: etcd
+          mountPath: /var/lib/etcd
+          capacity:
+            storage: 100Gi
+      tkr:
+        reference:
+          name: v1.24.9---vmware.1-tkg.4
+    nodePools:
+    - name: worker-nodepool-a1
+      replicas: 1
+      vmClass: best-effort-large
+      storageClass: vc01cl01-t0compute
+      volumes:
+        - name: containerd
+          mountPath: /var/lib/containerd
+          capacity:
+            storage: 100Gi
+      tkr:
+        reference:
+          name: v1.24.9---vmware.1-tkg.4
+  settings:
+    storage:
+      defaultClass: vc01cl01-t0compute
+    network:
+      cni:
+        name: antrea
+      services:
+        cidrBlocks: ["198.68.0.0/23"]
+      pods:
+        cidrBlocks: ["192.0.5.0/16"]
