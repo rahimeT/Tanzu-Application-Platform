@@ -18,3 +18,8 @@ namespaces:
   pipeline:
   - java
   - dotnet
+- name: rahime-dev
+  scanpolicy: strict
+  pipeline:
+  - java
+  - dotnet
