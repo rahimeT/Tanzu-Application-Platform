@@ -18,7 +18,7 @@ namespaces:
   pipeline:
   - java
   - dotnet
-- name: rahime-dev
+- name: fatih-dev
   scanpolicy: strict
   pipeline:
   - java
