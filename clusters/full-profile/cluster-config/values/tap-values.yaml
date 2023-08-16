@@ -167,7 +167,7 @@ tap_install:
     tap_telemetry:
       installed_for_vmware_internal_use: "true"
     namespace_provisioner:
-      controller: false
+      controller: true
       gitops_install:
         ref: origin/main
         subPath: gorkem/namespace-provisioner/namespaces
